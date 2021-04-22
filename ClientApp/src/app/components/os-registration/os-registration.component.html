@@ -1,0 +1,240 @@
+<div class="row justify-content-center" id="viewport">
+  <div class="row header d-flex flex-row">
+    <div class="col-md-8">
+      <a
+        routerLink="/dashboard"
+        class="btn btn-link btn-sm flex-start pl-5 py-2"
+        ><img src="../../../assets/back.svg" alt="Voltar"
+      /></a>
+      <p class="display-4 text-white justify-content-center px-5">
+        Registro de OS
+      </p>
+    </div>
+    <div class="col-md-4 align-items-center my-auto" *ngIf="os.osNumber">
+      <a
+        (click)="deleteOs(os.osNumber)"
+        class="btn btn-danger btn-lg float-right btn-block"
+        >Excluir OS <i class="fas fa-trash"></i
+      ></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="card card-register">
+        <div class="card-body">
+          <form
+            class="form-register"
+            method="post"
+            #form="ngForm"
+            (ngSubmit)="onSubmit(form)"
+            novalidate
+          >
+            <div class="form-label-group" *ngIf="os.osNumber">
+              <input
+                type="text"
+                id="inputOsNumber"
+                name="osnumber"
+                class="form-control"
+                [(ngModel)]="os.osNumber"
+                #osNumber="ngModel"
+                readonly
+              />
+              <label for="inputOsNumber">Nº da OS</label>
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="text"
+                id="inputTitle"
+                name="title"
+                class="form-control"
+                placeholder="Título do Serviço"
+                [(ngModel)]="os.title"
+                #title="ngModel"
+                required
+                autofocus
+                minlength="3"
+                maxlength="50"
+              />
+              <label for="inputTitle">Título do Serviço</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && title.invalid">
+              <small class="text-danger" *ngIf="title.errors.required"
+                >Este campo é obrigatório</small
+              >
+
+              <small class="text-danger" *ngIf="title.errors.minlength"
+                >Este campo deve conter pelo menos 3 caracteres</small
+              >
+              <small class="text-danger" *ngIf="title.errors.maxlength"
+                >Este campo deve conter no máximo 50 caracteres</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="text"
+                id="inputCNPJ"
+                name="cnpj"
+                class="form-control"
+                maxlength="14"
+                placeholder="CNPJ do Cliente"
+                [(ngModel)]="os.customerCNPJ"
+                #customerCNPJ="ngModel"
+                required
+                autofocus
+              />
+              <label for="inputCNPJ">CNPJ do Cliente (apenas números)</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && customerCNPJ.invalid">
+              <small class="text-danger" *ngIf="customerCNPJ.errors.required"
+                >Este campo é obrigatório</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="text"
+                id="inputCustomerName"
+                class="form-control"
+                name="customerName"
+                placeholder="Nome do Cliente"
+                [(ngModel)]="os.customerName"
+                #customerName="ngModel"
+                required
+              />
+              <label for="inputCustomerName">Nome do Cliente</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && customerName.invalid">
+              <small class="text-danger" *ngIf="customerName.errors.required"
+                >Este campo é obrigatório</small
+              >
+
+              <small class="text-danger" *ngIf="customerName.errors.minlength"
+                >Este campo deve conter pelo menos 3 caracteres</small
+              >
+              <small class="text-danger" *ngIf="customerName.errors.maxlength"
+                >Este campo deve conter no máximo 50 caracteres</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="text"
+                id="inputWorkerCPF"
+                class="form-control"
+                name="workerCpf"
+                maxlength="11"
+                placeholder="CPF do Prestador de Serviço"
+                [(ngModel)]="os.workerCPF"
+                #workerCPF="ngModel"
+                required
+              />
+              <label for="inputWorkerCPF"
+                >CPF do Prestador de Serviço (Apenas números)</label
+              >
+            </div>
+
+            <div class="error" *ngIf="form.submitted && workerCPF.invalid">
+              <small class="text-danger" *ngIf="workerCPF.errors.required"
+                >Este campo é obrigatório</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="text"
+                id="inputWorkerName"
+                class="form-control"
+                name="workerName"
+                placeholder="Nome do Prestador de Serviço"
+                [(ngModel)]="os.workerName"
+                #workerName="ngModel"
+                required
+              />
+              <label for="inputWorkerName">Nome do Prestador de Serviço</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && workerName.invalid">
+              <small class="text-danger" *ngIf="workerName.errors.required"
+                >Este campo é obrigatório</small
+              >
+
+              <small class="text-danger" *ngIf="workerName.errors.minlength"
+                >Este campo deve conter pelo menos 3 caracteres</small
+              >
+              <small class="text-danger" *ngIf="workerName.errors.maxlength"
+                >Este campo deve conter no máximo 50 caracteres</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="datetime-local"
+                id="inputDate"
+                class="form-control"
+                name="date"
+                placeholder="Data de Execução do Serviço"
+                [(ngModel)]="os.date"
+                #date="ngModel"
+                required
+              />
+              <label for="inputDate">Data de Execução do Serviço</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && date.invalid">
+              <small class="text-danger" *ngIf="date.errors.required"
+                >Este campo é obrigatório</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="number"
+                id="inputPrice"
+                step="0.01"
+                class="form-control"
+                name="price"
+                placeholder="Valor do Serviço"
+                [(ngModel)]="os.price"
+                #price="ngModel"
+                required
+              />
+              <label for="inputPrice">Valor do Serviço</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && price.invalid">
+              <small class="text-danger" *ngIf="price.errors.required"
+                >Este campo é obrigatório</small
+              >
+            </div>
+
+            <button
+              class="btn btn-lg btn-secondary btn-block text-uppercase"
+              type="submit"
+              *ngIf="!os.osNumber"
+            >
+              Cadastrar OS <i class="fas fa-save"></i>
+            </button>
+            <button
+              class="btn btn-lg btn-secondary btn-block text-uppercase"
+              type="submit"
+              *ngIf="os.osNumber"
+            >
+              Atualizar OS <i class="fas fa-save"></i>
+            </button>
+            <a
+              routerLink="/dashboard"
+              class="btn btn-lg btn-tertiary btn-block text-uppercase"
+            >
+              Voltar
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

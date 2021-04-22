@@ -4,6 +4,8 @@ namespace XPTO.Models
 {
     public class User
     {
+        public string Name { get; set; }
+
         [Key]
         [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(3, ErrorMessage = "Este campo deve conter entre 3 e 50 caracteres")]

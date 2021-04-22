@@ -1,0 +1,78 @@
+<div class="row justify-content-center" id="viewport">
+  <div class="row header d-flex flex-row">
+    <div class="col-md-8">
+      <a
+        (click)="logout()"
+        class="btn btn-link text-white btn-sm flex-start pl-5 py-2"
+        ><span class="lead"
+          ><i class="fas fa-sign-out-alt fa-flip-horizontal"></i> Logout</span
+        ></a
+      >
+      <p class="display-4 text-white justify-content-center px-5">
+        Painel de Controle
+      </p>
+    </div>
+    <div class="col-md-4 align-items-center my-auto">
+      <a routerLink="/os" class="btn btn-secondary btn-lg float-right btn-block"
+        >Adicionar OS <i class="fas fa-plus"></i
+      ></a>
+    </div>
+  </div>
+  <div class="row d-flex flex-row">
+    <div>
+      <input
+        type="text"
+        id="searchInput"
+        class="form-control"
+        placeholder="Digite aqui sua busca..."
+        *ngIf="oslist.length !== 0"
+        name="search"
+        [(ngModel)]="filter"
+        autofocus
+      />
+
+      <div class="text-center py-5" *ngIf="oslist.length === 0">
+        <p class="lead">
+          Nenhuma OS cadastrada. Comece agora clicando no botão
+          <span class="text-warning">ADICIONAR OS</span>
+        </p>
+      </div>
+
+      <table
+        class="table table-hover"
+        aria-labelledby="tableLabel"
+        *ngIf="oslist.length !== 0"
+      >
+        <thead>
+          <tr>
+            <th>Nº da OS</th>
+            <th>Título do Serviço</th>
+            <th>Nome do Cliente</th>
+            <th>Valor do Serviço</th>
+            <th>Data de Execução</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let os of oslist | filter: filter; let i = index">
+            <td>{{ os.osNumber }}</td>
+            <td>{{ os.title }}</td>
+            <td>{{ os.customerName }}</td>
+            <td>{{ os.price | currency: "BRL" }}</td>
+            <td>{{ os.date | date: "dd/MM/yyyy hh:mm" }}</td>
+            <td>
+              <button
+                routerLink="/os/{{ os.osNumber }}"
+                class="btn text-warning"
+              >
+                <i class="fas fa-edit"></i></button
+              ><button class="btn text-danger" (click)="deleteOs(os.osNumber)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

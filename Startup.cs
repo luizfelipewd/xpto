@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using XPTO.Data;
+using XPTO.Models;
 
 namespace XPTO
 {
@@ -25,9 +26,10 @@ namespace XPTO
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mySql = Configuration.GetConnectionString("DefaultConnection");
             services.AddCors();
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("xpto"));
-            services.AddScoped<DataContext, DataContext>();
+            // services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("xpto"));
+            services.AddDbContext<DataContext>(opt => opt.UseMySql(mySql, ServerVersion.AutoDetect(mySql)));
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

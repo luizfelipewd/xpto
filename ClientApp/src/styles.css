@@ -1,16 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-code {
-  color: #e01a76;
+:root {
+  --primary: linear-gradient(135deg, #7a62e5, #aa80f9);
+  --primary-hover: linear-gradient(135deg, #aa80f9, #b87eeb);
+  --secondary: linear-gradient(135deg, #f6894c, #febf45);
+  --secondary-hover: linear-gradient(135deg, #febf45, #fdd42f);
+  --danger: linear-gradient(135deg, #c0392b, #ff523e);
+  --danger-hover: linear-gradient(135deg, #ff523e, #ff7c7c);
+  --light-gray: #a0aab5;
+  --text: #2c3e50;
+  --input-padding-x: 1.5rem;
+  --input-padding-y: 0.75rem;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  color: white;
+}
+.btn-secondary {
+  background: var(--secondary);
+  color: white;
+  border: none;
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  background: var(--secondary-hover);
+  color: white;
+}
+.btn-tertiary {
+  background: var(--light-gray);
+  color: white;
+  border: none;
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+.btn-tertiary:hover {
+  background: whitesmoke;
+  color: var(--text);
+}
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  border: none;
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+.btn-danger:hover {
+  background: var(--danger-hover);
+  color: white;
 }

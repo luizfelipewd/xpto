@@ -1,0 +1,120 @@
+<div class="row justify-content-center" id="viewport">
+  <div class="row header d-flex flex-row">
+    <div>
+      <a
+        routerLink="/"
+        class="btn btn-link text-white btn-sm flex-start pl-5 py-2"
+        ><img src="../../../assets/back.svg" alt="Voltar"
+      /></a>
+      <p class="display-4 text-white justify-content-center py-4 px-5">
+        Cadastre-se na plataforma
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="card card-signin">
+        <div class="card-body">
+          <img
+            src="../../../assets/logo.png"
+            style="max-width: 200px"
+            class="p-3"
+          />
+          <form
+            class="form-signin"
+            method="post"
+            #form="ngForm"
+            (ngSubmit)="signUp(form)"
+            novalidate
+          >
+            <div class="form-label-group">
+              <input
+                type="text"
+                id="inputName"
+                name="name"
+                class="form-control"
+                placeholder="Name address"
+                [(ngModel)]="user.name"
+                #name="ngModel"
+                required
+                autofocus
+                minlength="3"
+                maxlength="50"
+              />
+              <label for="inputName">Nome</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && name.invalid">
+              <small class="text-danger" *ngIf="name.errors.required"
+                >Este campo é obrigatório</small
+              >
+
+              <small class="text-danger" *ngIf="name.errors.minlength"
+                >Este campo deve conter pelo menos 3 caracteres</small
+              >
+              <small class="text-danger" *ngIf="name.errors.maxlength"
+                >Este campo deve conter no máximo 50 caracteres</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="email"
+                id="inputEmail"
+                name="email"
+                class="form-control"
+                placeholder="Email address"
+                [(ngModel)]="user.email"
+                #email="ngModel"
+                required
+                autofocus
+              />
+              <label for="inputEmail">Email</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && email.invalid">
+              <small class="text-danger" *ngIf="email.errors.required"
+                >Este campo é obrigatório</small
+              >
+              <small class="text-danger" *ngIf="email.errors.email"
+                >Email inválido</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="password"
+                id="inputPassword"
+                class="form-control"
+                name="password"
+                placeholder="Password"
+                [(ngModel)]="user.password"
+                #password="ngModel"
+                required
+                password
+              />
+              <label for="inputPassword">Senha</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && password.invalid">
+              <small class="text-danger" *ngIf="password.errors.required"
+                >Este campo é obrigatório</small
+              >
+
+              <small class="text-danger" *ngIf="password.errors.minlength"
+                >Este campo deve conter entre 6 e 32 caracteres</small
+              >
+            </div>
+
+            <button
+              class="btn btn-lg btn-primary btn-block text-uppercase"
+              type="submit"
+            >
+              Registrar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

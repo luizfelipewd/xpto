@@ -1,0 +1,51 @@
+#viewport {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(252, 238, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(252, 238, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 254, 230, 1) 100%
+  );
+}
+
+lottie-player {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: 700;
+  margin-top: auto;
+  color: var(--text);
+}
+
+.content {
+  margin: auto;
+  padding-left: 15%;
+}
+
+.logo {
+  width: 100%;
+  max-width: 400px;
+}
+
+.lead {
+  color: var(--light-gray);
+}
+
+.btn-custom {
+  color: #a0aab5;
+}
+.btn-custom:hover {
+  color: #fdd42f;
+}
+
+@media (max-width: 990px) {
+  .content {
+    padding: 20% 5% 5%;
+    text-align: center;
+  }
+}

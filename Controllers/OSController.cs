@@ -21,6 +21,14 @@ namespace XPTO.Controllers
             var osList = await context.OS.ToListAsync();
             return osList;
         }
+        [HttpGet]
+        [Route("{id}")]
+        [Authorize]
+        public async Task<ActionResult<OS>> GetById([FromServices] DataContext context, Guid id)
+        {
+            var os = await context.OS.AsNoTracking().FirstOrDefaultAsync(x => x.OSNumber == id);
+            return os;
+        }
 
         [HttpPost]
         [Route("")]
@@ -28,7 +36,6 @@ namespace XPTO.Controllers
         public async Task<ActionResult<OS>> Post([FromServices] DataContext context, [FromBody] OS model)
         {
             model.OSNumber = Guid.NewGuid();
-            model.Date = DateTime.Now;
 
             if (ModelState.IsValid)
             {
@@ -80,7 +87,7 @@ namespace XPTO.Controllers
             {
                 context.OS.Remove(deletedOs);
                 await context.SaveChangesAsync();
-                return Ok("OS removida com sucesso");
+                return Ok(new { message = "OS removida" });
             }
             catch (Exception)
             {

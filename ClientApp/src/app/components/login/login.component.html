@@ -1,0 +1,90 @@
+<div class="row justify-content-center" id="viewport">
+  <div class="row header d-flex flex-row">
+    <div>
+      <a
+        routerLink="/"
+        class="btn btn-link text-white btn-sm flex-start pl-5 py-2"
+        ><img src="../../../assets/back.svg" alt="Voltar"
+      /></a>
+      <p class="display-4 text-white justify-content-center py-4 px-5">
+        Iniciar sessão na plataforma
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="card card-signin">
+        <div class="card-body">
+          <img
+            src="../../../assets/logo.png"
+            style="max-width: 200px"
+            class="p-3"
+          />
+          <form
+            class="form-signin"
+            method="post"
+            #form="ngForm"
+            (ngSubmit)="signIn(form)"
+            novalidate
+          >
+            <div class="error" *ngIf="form.submitted && email.invalid">
+              <small class="text-danger" *ngIf="email.errors.required"
+                >Este campo é obrigatório</small
+              >
+              <small class="text-danger" *ngIf="email.errors.email"
+                >Email inválido</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="email"
+                name="email"
+                id="inputEmail"
+                [(ngModel)]="user.email"
+                #email="ngModel"
+                class="form-control"
+                placeholder="Digite o seu email"
+                required
+                email
+                autofocus
+              />
+              <label for="inputEmail">Email</label>
+            </div>
+
+            <div class="error" *ngIf="form.submitted && password.invalid">
+              <small class="text-danger" *ngIf="password.errors.required"
+                >Este campo é obrigatório</small
+              >
+
+              <small class="text-danger" *ngIf="password.errors.minlength"
+                >Este campo deve conter entre 6 e 32 caracteres</small
+              >
+            </div>
+
+            <div class="form-label-group">
+              <input
+                type="password"
+                name="password"
+                id="inputPassword"
+                [(ngModel)]="user.password"
+                #password="ngModel"
+                class="form-control"
+                placeholder="Digite a sua senha"
+                required
+                password
+              />
+              <label for="inputPassword">Senha</label>
+            </div>
+            <button
+              class="btn btn-lg btn-primary btn-block text-uppercase"
+              type="submit"
+            >
+              Entrar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
