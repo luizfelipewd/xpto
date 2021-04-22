@@ -9,7 +9,7 @@ using XPTO.Data;
 namespace XPTO.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210422192845_InitialCreate")]
+    [Migration("20210422204506_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,8 +72,8 @@ namespace XPTO.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32) CHARACTER SET utf8mb4");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4");
 
                     b.HasKey("Email");
 
